@@ -3,14 +3,14 @@ clt;
 %Agregamos vlfeat
 run('vlfeat-0.9.20/toolbox/vl_setup');
 
-% 1 - Extracción de características
+% 1 - Extracciï¿½n de caracterï¿½sticas
 if exist('data.mat')
     load('data.mat')
 else
-    [X, Xn, S] = featureExtraction3();
+    [X, Xn, S] = featureExtraction();
 end
 
-% 2 - Supervisión
+% 2 - Supervisiï¿½n
 [d] = supervision(S);
 
 % s = Bfs_clean(X,0);
@@ -28,7 +28,7 @@ k=k+1;b(k).name = 'nbnnxi'; b(k).options.D = 100;  b(k).options.show =0; b(k).st
 k=k+1;b(k).name = 'svmplus';   b(k).options.kernel = 1;b(k).options.svm = 1;   b(k).string = 'SVN';                           % KNN with 5 neighbors
 %k=k+1;b(k).name = 'knn';   b(k).options.k = 3;   b(k).string = 'KNN=3';
 
-% 6 - Medidor de desempeño
+% 6 - Medidor de desempeï¿½o
 op.strat=1; op.b = b; op.v = 5; op.show = 1; op.c = 0.95;
 [p,ci] = Bev_crossval(X,d,op);
 punmixed = unmixed(X, S, d, b );
@@ -43,8 +43,3 @@ fprintf('\n%10s Unmixed\n')
 for i=1:length(b)
     fprintf('%15s = %6.2f%%\n',b(i).string,punmixed(i)*100);
 end
-
-
-
-
-
