@@ -4,7 +4,7 @@ function [ f ] = subject( S )
     f = 1:size(S);
     f = f';
     for i = 1:size(S)
-       f(i) = str2num(S(i,28:29));
+       f(i) = str2num(S(i,21:22));
     end
 end
 

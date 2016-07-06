@@ -24,7 +24,7 @@ k = 0;
 k=k+1;b(k).name = 'lda';   b(k).options.p = [];         b(k).string = 'LDA';            % LDA
 % k=k+1;b(k).name = 'qda';   b(k).options.p = [];         b(k).string = 'QDA';            % QDA
 k=k+1;b(k).name = 'dmin';  b(k).options = [];           b(k).string = 'Euclidean';      % Euclidean distance
-k=k+1;b(k).name = 'nbnnxi'; b(k).options.D = 100;  b(k).options.show =0; b(k).string = 'NBNN';
+%k=k+1;b(k).name = 'nbnnxi'; b(k).options.D = 100;  b(k).options.show =0; b(k).string = 'NBNN';
 k=k+1;b(k).name = 'svmplus';   b(k).options.kernel = 1;b(k).options.svm = 1;   b(k).string = 'SVN';                           % KNN with 5 neighbors
 %k=k+1;b(k).name = 'knn';   b(k).options.k = 3;   b(k).string = 'KNN=3';
 
