@@ -13,14 +13,11 @@ function [I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I)
       if i == 0
         EYES = [16 41 60 14];
       end
+      if size(EYES,1) == 3
+          EYES = EYES(3,:);
+      end
       if size(EYES,1) > 1
-          opt1 = EYES(1,:);
-          opt2 = EYES(2,:);
-          if opt1(3) + opt1(4) > opt2(3) + opt2(4)
-              EYES = ESYES(1,:);
-          else
-              EYES = EYES(2,:);
-          end 
+          EYES = EYES(2,:);
       end
   end
 
@@ -44,17 +41,9 @@ function [I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I)
       NoseDetect = vision.CascadeObjectDetector('Nose','MergeThreshold',i);
       NOSE=step(NoseDetect,I);
       if size(NOSE,1) > 1
-          opt1 = NOSE(1,:);
-          opt2 = NOSE(2,:);
-          if opt1(1) < EYES(1) || opt1(2) < EYES(2)
-              NOSE = NOSE(2,:);
-          elseif opt2(1) < EYES(1) || opt2(2) < EYES(2)
-              NOSE = NOSE(1,:);
-          elseif opt1(3) + opt1(4) > opt2(3) + opt2(4)
-              NOSE = NOSE(1,:);
-          else
-              NOSE = NOSE(2,:);
-          end 
+          jaime = NOSE;
+          if 
+          NOSE = NOSE(2,:);
       end
   end
   I_nose = imcrop(I, NOSE);

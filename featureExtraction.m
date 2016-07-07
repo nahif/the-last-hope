@@ -1,7 +1,7 @@
 function [X, Xn, S] = FeatureExtraction3()
   F       = dir('jaffe_new/*.png');
   nImages = length(F);
-  nFeatures = 64 * 4; %Magic number, fix
+  nFeatures = 64 * 3; %Magic number, fix
 
   options.nj    = 4;
   options.ni    = 4;
