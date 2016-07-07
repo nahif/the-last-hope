@@ -9,7 +9,19 @@ function [I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I)
       i = i - 1;
       EyeDetect = vision.CascadeObjectDetector('EyePairSmall','MergeThreshold',i);
       EYES=step(EyeDetect,I);
+      if i == 0
+        EYES = [16 41 60 14];
+      end
+      if size(EYES,1) == 3
+          EYES = EYES(3,:);
+      end
+      if size(EYES,1) > 1
+          EYES = EYES(1,:);
+      end
   end
+
+  EYES(2) = EYES(2) - 13;
+  EYES(4) = EYES(4) + 13;
 
   L_EYE = EYES;
   L_EYE(3) = (EYES(3) / 2) -5;

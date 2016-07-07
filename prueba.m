@@ -1,7 +1,19 @@
-clear;
+clt;
 
-I = imread('jaffe_new/face_01_01_02.png');
+F       = dir('jaffe_new/*.png');
+nImages = length(F);
 
-[I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I);
+for i = 1:nImages
+    I   = imread(['jaffe_new/' F(i).name]);
+    [I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I);
+    imshow(I_eye1);
+    input(F(i).name)
+    imshow(I_eye2);
+    input('next')
+    imshow(I_nose);
+    input('next')
+    imshow(I_mouth);
+    input('next')
+end
 
-imshow(I_mouth);
+

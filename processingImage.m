@@ -11,6 +11,7 @@ while isempty(BB1)==1
     BB1=step(EyeDetect,I);
 end
 
+
 %To detect Mouth
 BB2 = [];
 i = 0;

@@ -1,31 +1,23 @@
 function [X, Xn, S] = FeatureExtraction3()
-f.path          = './jaffe_new/';  % directory of the images
-  f.prefix        =  '*';
-  f.extension     =  '.png';
-  f.gray          = 0;
-  f.imgmin        = 1;
-  f.imgmax        = 215;
+  F       = dir('jaffe_new/*.png');
+  nImages = length(F);
+  nFeatures = 64 * 4; %Magic number, fix
 
-  b(1).name = 'hog';
-  b(1).options.nj = 10;
-  b(1).options.ni = 10;
-  b(1).options.B = 9;
-  b(1).options.show = 0;
-  b(1).options.type = 2;
+  options.nj    = 4;
+  options.ni    = 4;
+  options.B     = 4;
+  options.show  = 0;
 
-%     b(2).name = 'lbp';
-%   b(2).options.vdiv = 4;
-%   b(2).options.hdiv = 4;
-%   b(2).options.sample = 8;
-%   b(2).options.mappingtype = 'ri';
-%   b(2).options.show = 0;
-%   b(2).options.type = 2;
-%   b(2).options.mappingtype = 'u2';
+  X = zeros(2*nImages,nFeatures);
+  for i = 1:nImages
+    ['Processing image ' F(i).name]
+    I   = imread(['jaffe_new/' F(i).name]);
+    X(2*i-1:2*i,:) = singleImageFeatureExtraction(I,options);
+    s = num2str(['jaffe_new/' F(i).name]);
+    S(2*i-1,:) = s;
+    S(2*i,  :) = s;
+  end
 
-
-  opf.b = b;
-  opf.channels = 'g';
-  [X,Xn,S] = Bfx_files(f,opf);
-
+  Xn = 0;
 
 end

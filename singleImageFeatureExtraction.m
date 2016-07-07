@@ -1,23 +1,23 @@
-function [X, Xn, S] = SingleImageFeatureExtraction(I)
-  I2 = fliplr(I);
-
+function [X] = SingleImageFeatureExtraction(I,options)
   [I_eye1, I_eye2, I_nose, I_mouth] = preProcessing(I);
-
-  options.nj    = 20;
-  options.ni    = 10;
-  options.B     = 9;
-  options.show  = 0;
-
-  [Xe1, Xne1] = Bfx_hog(I_eye1,options);
-  [Xe2, Xne2] = Bfx_hog(I_eye1,options);
-  [Xno, Xnno] = Bfx_hog(I_eye1,options);
-  [Xmo, Xnmo] = Bfx_hog(I_eye1,options);
-
-  X = [Xe1 Xe2 Xno Xmo];
-  Xn = []
-
-  Xn
+  I2_eye1 = fliplr(I_eye1);
+  I2_eye2 = fliplr(I_eye2);
+  I2_nose = fliplr(I_nose);
+  I2_mouth = fliplr(I_mouth);
 
 
+  [Xe1] = Bfx_hog(I_eye1,options);
+  [Xe2] = Bfx_hog(I_eye2,options);
+  [Xno] = Bfx_hog(I_nose,options);
+  [Xmo] = Bfx_hog(I_mouth,options);
 
+  [X2e1] = Bfx_hog(I2_eye1,options);
+  [X2e2] = Bfx_hog(I2_eye2,options);
+  [X2no] = Bfx_hog(I2_nose,options);
+  [X2mo] = Bfx_hog(I2_mouth,options);
+
+
+
+
+  X = [Xe1 Xe2 Xno Xmo; X2e1 X2e2 X2no X2mo ];
 end
