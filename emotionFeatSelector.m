@@ -6,12 +6,11 @@ function [ Xemotion,d2,s ] = emotionFeatSelector( X, d, nFeat, emotion )
   op.b.name = 'fisher';
   d2 = d;
   
-  if emotion > 0
-    for i = 1:length(d)
-      if d(i) == emotion
-        d2(i) = 1;
-      else
-        d2(i) = 2;
+  for i = 1:length(d)
+    d2(i) = length(emotion)+1;
+    for j = 1:length(emotion)
+      if d(i) == emotion(j)
+        d2(i) = j;
       end
     end
   end
